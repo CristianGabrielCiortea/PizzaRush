@@ -15,7 +15,15 @@ public class MovementScript : MonoBehaviour
         // Calculate rotation amount based on input
         float rotationAmount = horizontalInput * rotationSpeed * Time.deltaTime;
 
-        // Rotate the car
+        Debug.Log(rotationAmount);
+        Debug.Log(transform.rotation.y);
+
+        if ((transform.rotation.y > -0.4 && rotationAmount > 0) ||
+            (transform.rotation.y < -0.9 && rotationAmount < 0))
+        {
+            rotationAmount = 0;
+        }
+
         transform.Rotate(0, rotationAmount, 0);
 
         // Move the car forward
