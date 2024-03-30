@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SkyManagement : MonoBehaviour
+public class SkyManager : MonoBehaviour
 {
     public float skySpeed;
 
