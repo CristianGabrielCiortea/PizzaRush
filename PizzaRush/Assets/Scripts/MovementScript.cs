@@ -51,10 +51,10 @@ public class MovementScript : MonoBehaviour
 
         transform.Rotate(0, rotationAmount, 0);
 
-        if(Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             speed -= 0.025f;
-            if(speed < 0) speed = 0;
+            if (speed < 0) speed = 0;
         }
         else
         {
