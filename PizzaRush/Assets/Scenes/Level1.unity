@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.54924387, g: 0.8553247, b: 0.92222166, a: 1}
+  m_IndirectSpecularColor: {r: 0.5491231, g: 0.85530746, b: 0.9222081, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -363,7 +363,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -5134,24 +5134,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100000, guid: 1af0a2c8773f85c40bdb120f32cd8a8a, type: 3}
   m_PrefabInstance: {fileID: 876578296}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &643686795
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 643686794}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f4993fc0d7287e4eb4874e6a8f86084, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _particleSystem: {fileID: 1051554066}
---- !u!4 &643686798 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400000, guid: 1af0a2c8773f85c40bdb120f32cd8a8a, type: 3}
-  m_PrefabInstance: {fileID: 876578296}
-  m_PrefabAsset: {fileID: 0}
 --- !u!65 &643686799
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5444,14 +5426,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 400000, guid: 1af0a2c8773f85c40bdb120f32cd8a8a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1051554068}
+    m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 100000, guid: 1af0a2c8773f85c40bdb120f32cd8a8a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 643686795}
     - targetCorrespondingSourceObject: {fileID: 100000, guid: 1af0a2c8773f85c40bdb120f32cd8a8a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 643686799}
@@ -5489,7 +5465,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -10337,14 +10313,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051554065}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.48, y: -0, z: -0.83}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -0.58, y: -0.09999925, z: 0.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 343386146}
   - {fileID: 1968365867}
-  m_Father: {fileID: 643686798}
+  m_Father: {fileID: 1778575379}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1001 &1326492638
 PrefabInstance:
@@ -10602,7 +10578,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7410674117263729256, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1051554068}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5328186423594502750, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
       insertIndex: -1
@@ -10614,6 +10593,11 @@ PrefabInstance:
 --- !u!1 &1778575375 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5328186423594502750, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+  m_PrefabInstance: {fileID: 1778575374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1778575379 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7410674117263729256, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
   m_PrefabInstance: {fileID: 1778575374}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1778575380
@@ -10628,6 +10612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69db6aa8845d11408937eb645fdf9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _particleSystem: {fileID: 1051554066}
 --- !u!95 &1778575381
 Animator:
   serializedVersion: 5
@@ -10902,7 +10887,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
