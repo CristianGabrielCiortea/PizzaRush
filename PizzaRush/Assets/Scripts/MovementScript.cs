@@ -51,6 +51,17 @@ public class MovementScript : MonoBehaviour
 
         transform.Rotate(0, rotationAmount, 0);
 
+        if(Input.GetKey(KeyCode.Space))
+        {
+            speed -= 0.025f;
+            if(speed < 0) speed = 0;
+        }
+        else
+        {
+            speed += 0.05f;
+            if (speed >= 10f) speed = 10f;
+        }
+
         // Move the car forward
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }

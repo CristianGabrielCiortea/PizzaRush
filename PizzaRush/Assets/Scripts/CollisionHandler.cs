@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
@@ -14,12 +15,22 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        switch(collision.gameObject.tag)
         {
-            _animator.SetTrigger("TriggerCollision");
-            _particleSystem.Play();
-            StartCoroutine(SetTriggerAfterDelay("UntriggerCollision", 1f));
-            Destroy(collision.gameObject);
+            case "Obstacle":
+                _animator.SetTrigger("TriggerCollision");
+                _particleSystem.Play();
+                StartCoroutine(SetTriggerAfterDelay("UntriggerCollision", 1f));
+                Destroy(collision.gameObject);
+                break;
+            case "Finish":
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                break;
+            case "Map":
+                break;
+            default:
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                break;
         }
     }
 
