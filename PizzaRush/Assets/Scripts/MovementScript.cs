@@ -4,44 +4,44 @@ using System.Collections;
 
 public class MovementScript : MonoBehaviour
 {
+    public Canvas mainMenu;
+    public Canvas gameUI;
     public float speed = 10f; // Forward speed of the car
     public float rotationSpeed = 100f; // Rotation speed of the car
-
-    void Start()
-    {
-        // Disable movement script until camera animation finishes
-        enabled = false;
-
-        StartCoroutine(PlayAnimation());
-    }
+    private bool isPlaying = false;
 
     IEnumerator PlayAnimation()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
         transform.GetChild(2).DORotate(new Vector3(18f, 270f, 0f), 2f).SetEase(Ease.OutQuad);
         transform.GetChild(2).DOMoveX(41, 2f).SetEase(Ease.OutQuad).OnComplete(() => EnableMovement());
     }
 
     void EnableMovement()
     {
-        // Enable user input for movement
+        gameUI.gameObject.SetActive(true);
+        isPlaying = true;
         enabled = true;
     }
 
     void Update()
     {
-        // Only allow movement if script is enabled
-        if (!enabled)
+        if (!isPlaying)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                enabled = false;
+                mainMenu.gameObject.GetComponent<CanvasGroup>().DOFade(0, 1f).OnComplete(() => mainMenu.gameObject.SetActive(false));
+                StartCoroutine(PlayAnimation());
+            }
             return;
+        }
 
         // Get player input for horizontal movement
         float horizontalInput = Input.GetAxis("Horizontal");
 
         // Calculate rotation amount based on input
         float rotationAmount = horizontalInput * rotationSpeed * Time.deltaTime;
-
-        Debug.Log(rotationAmount);
-        Debug.Log(transform.rotation.y);
 
         if ((transform.rotation.y > -0.4 && rotationAmount > 0) ||
             (transform.rotation.y < -0.9 && rotationAmount < 0))
@@ -51,10 +51,10 @@ public class MovementScript : MonoBehaviour
 
         transform.Rotate(0, rotationAmount, 0);
 
-        if(Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space))
         {
             speed -= 0.025f;
-            if(speed < 0) speed = 0;
+            if (speed < 0) speed = 0;
         }
         else
         {
