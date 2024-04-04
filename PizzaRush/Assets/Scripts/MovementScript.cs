@@ -9,6 +9,9 @@ public class MovementScript : MonoBehaviour
     public float speed = 10f; // Forward speed of the car
     public float rotationSpeed = 100f; // Rotation speed of the car
     private bool isPlaying = false;
+    public TrailRenderer[] tireMarks;
+    private bool tireMarksFlag = false;
+    private float initialSpeed;
 
     IEnumerator PlayAnimation()
     {
@@ -28,6 +31,7 @@ public class MovementScript : MonoBehaviour
     {
         if (!isPlaying)
         {
+            initialSpeed = speed;
             if (Input.GetKey(KeyCode.Space))
             {
                 enabled = false;
@@ -53,16 +57,40 @@ public class MovementScript : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            speed -= 0.025f;
-            if (speed < 0) speed = 0;
+            emitTrailMarks();
+            if (speed > 5f)
+                speed -= 0.025f;
         }
         else
         {
-            speed += 0.05f;
-            if (speed >= 10f) speed = 10f;
+            stopTrailMarks();
+            if (speed < initialSpeed)
+                speed += 0.05f;
         }
 
         // Move the car forward
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+
+    private void emitTrailMarks()
+    {
+        if (tireMarksFlag) return;
+        foreach (TrailRenderer trail in tireMarks)
+        {
+            trail.emitting = true;
+        }
+
+        tireMarksFlag = true;
+    }
+
+    private void stopTrailMarks()
+    {
+        if (!tireMarksFlag) return;
+        foreach (TrailRenderer trail in tireMarks)
+        {
+            trail.emitting = false;
+        }
+
+        tireMarksFlag = false;
     }
 }
