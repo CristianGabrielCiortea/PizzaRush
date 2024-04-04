@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.54855436, g: 0.85533774, b: 0.92249507, a: 1}
+  m_IndirectSpecularColor: {r: 0.5491162, g: 0.85531116, b: 0.92218405, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12888,8 +12888,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 637236080113441542, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
       propertyPath: speed
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 637236080113441542, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+      propertyPath: tireMarks.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 637236080113441542, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+      propertyPath: tireMarks.Array.data[0]
+      value: 
+      objectReference: {fileID: 1778575378}
+    - target: {fileID: 637236080113441542, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+      propertyPath: tireMarks.Array.data[1]
+      value: 
+      objectReference: {fileID: 1778575377}
+    - target: {fileID: 637236080113441542, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+      propertyPath: tireMarks.Array.data[2]
+      value: 
+      objectReference: {fileID: 1778575376}
     - target: {fileID: 2187998669434834566, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
       propertyPath: m_Constraints
       value: 112
@@ -13011,6 +13027,21 @@ PrefabInstance:
 --- !u!1 &1778575375 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5328186423594502750, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+  m_PrefabInstance: {fileID: 1778575374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &1778575376 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 6969939286269315958, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+  m_PrefabInstance: {fileID: 1778575374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &1778575377 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 7466192901630082726, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+  m_PrefabInstance: {fileID: 1778575374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!96 &1778575378 stripped
+TrailRenderer:
+  m_CorrespondingSourceObject: {fileID: 7169670655361411410, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
   m_PrefabInstance: {fileID: 1778575374}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1778575379 stripped

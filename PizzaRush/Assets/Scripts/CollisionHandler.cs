@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -15,7 +16,7 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        switch(collision.gameObject.tag)
+        switch (collision.gameObject.tag)
         {
             case "Obstacle":
                 _animator.SetTrigger("TriggerCollision");
@@ -24,7 +25,7 @@ public class CollisionHandler : MonoBehaviour
                 Destroy(collision.gameObject);
                 break;
             case "Finish":
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                StartCoroutine(ReloadWithAnimation());
                 break;
             case "Map":
                 break;
@@ -39,5 +40,21 @@ public class CollisionHandler : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         _animator.SetTrigger(triggerName);
+    }
+
+    void PlayAnimation()
+    {
+        Transform childTransform = transform.GetChild(2);
+        Vector3 targetRotation = childTransform.localEulerAngles + new Vector3(0f, 360f, 0f); 
+
+        childTransform.DORotate(targetRotation, 2f, RotateMode.FastBeyond360).SetEase(Ease.Linear);
+
+    }
+
+    IEnumerator ReloadWithAnimation()
+    {
+        PlayAnimation();
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
