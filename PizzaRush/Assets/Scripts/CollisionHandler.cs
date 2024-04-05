@@ -47,6 +47,7 @@ public class CollisionHandler : MonoBehaviour
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                     break;
                 }
+                SoundManager.instance.PlayClip("collide");
                 _animator.SetTrigger("TriggerCollision");
                 _particleSystem.Play();
                 StartCoroutine(SetTriggerAfterDelay("UntriggerCollision", 1f));
