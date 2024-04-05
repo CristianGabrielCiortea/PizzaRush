@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -28,11 +29,12 @@ public class CollisionHandler : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "SpeedBump":
-                if (movementScript.speed > 7.5f)
+                if (movementScript.speed > 8.5f)
                 {
                     DecreaseHealth();
                     if (_health == 0)
                     {
+                        SoundManager.instance.PlayClip("gameover");
                         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                         break;
                     }
@@ -45,12 +47,13 @@ public class CollisionHandler : MonoBehaviour
             case "GroupObstacle":
             case "Obstacle":
                 DecreaseHealth();
+                SoundManager.instance.PlayClip("collide");
                 if (_health == 0)
                 {
+                    SoundManager.instance.PlayClip("gameover");
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                     break;
                 }
-                SoundManager.instance.PlayClip("collide");
                 _animator.SetTrigger("TriggerCollision");
                 _particleSystem.Play();
                 StartCoroutine(SetTriggerAfterDelay("UntriggerCollision", 1f));
