@@ -36,7 +36,7 @@ public class CollisionHandler : MonoBehaviour
                     {
                         SoundManager.instance.PlayClip("gameover");
                         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                        break;
+                        return;
                     }
                 }
                 if(movementScript.speed > 5.25f)
@@ -47,14 +47,14 @@ public class CollisionHandler : MonoBehaviour
             case "GroupObstacle":
             case "Obstacle":
                 DecreaseHealth();
-                SoundManager.instance.PlayClip("collide");
                 if (_health == 0)
                 {
                     SoundManager.instance.PlayClip("gameover");
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                    break;
+                    return;
                 }
                 _animator.SetTrigger("TriggerCollision");
+                SoundManager.instance.PlayClip("collide");
                 _particleSystem.Play();
                 StartCoroutine(SetTriggerAfterDelay("UntriggerCollision", 1f));
                 if (collision.gameObject.CompareTag("GroupObstacle"))
