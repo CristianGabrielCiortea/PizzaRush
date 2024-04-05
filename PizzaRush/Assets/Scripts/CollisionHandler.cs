@@ -1,8 +1,8 @@
+using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using DG.Tweening;
 
 public class CollisionHandler : MonoBehaviour
 {
@@ -28,7 +28,7 @@ public class CollisionHandler : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "SpeedBump":
-                if(movementScript.speed > 7.5f)
+                if (movementScript.speed > 7.5f)
                 {
                     DecreaseHealth();
                     if (_health == 0)
@@ -37,7 +37,10 @@ public class CollisionHandler : MonoBehaviour
                         break;
                     }
                 }
-                movementScript.speed -= 0.25f;
+                if(movementScript.speed > 5.25f)
+                {
+                    movementScript.speed -= 0.25f;
+                }
                 break;
             case "GroupObstacle":
             case "Obstacle":
@@ -51,14 +54,17 @@ public class CollisionHandler : MonoBehaviour
                 _animator.SetTrigger("TriggerCollision");
                 _particleSystem.Play();
                 StartCoroutine(SetTriggerAfterDelay("UntriggerCollision", 1f));
-                if (collision.gameObject.tag.Equals("GroupObstacle"))
+                if (collision.gameObject.CompareTag("GroupObstacle"))
                 {
                     foreach (var cone in cones)
                     {
                         Destroy(cone);
                     }
                 }
-                Destroy(collision.gameObject);
+                else
+                {
+                    Destroy(collision.gameObject);
+                }
                 break;
             case "Finish":
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
