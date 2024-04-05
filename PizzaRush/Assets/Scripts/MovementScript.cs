@@ -6,6 +6,7 @@ public class MovementScript : MonoBehaviour
 {
     public Canvas mainMenu;
     public Canvas gameUI;
+    public Canvas settingsMenu;
     public float speed = 10f; // Forward speed of the car
     public float rotationSpeed = 100f; // Rotation speed of the car
     private bool isPlaying = false;
@@ -29,6 +30,11 @@ public class MovementScript : MonoBehaviour
 
     void Update()
     {
+        if (settingsMenu.gameObject.activeSelf)
+        {
+            return;
+        }
+
         if (!isPlaying)
         {
             initialSpeed = speed;

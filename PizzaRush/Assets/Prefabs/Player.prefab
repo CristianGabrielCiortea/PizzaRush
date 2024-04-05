@@ -421,6 +421,7 @@ GameObject:
   - component: {fileID: 5468275255649935076}
   - component: {fileID: 637236080113441542}
   - component: {fileID: 4479162057800364952}
+  - component: {fileID: 743770126942121969}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -509,9 +510,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 0}
   gameUI: {fileID: 0}
-  speed: 10
+  settingsMenu: {fileID: 0}
+  speed: 15
   rotationSpeed: 100
-  tireMarks: []
+  tireMarks:
+  - {fileID: 2680380989419609316}
+  - {fileID: 4525443393882357006}
+  - {fileID: 6782294744375515378}
 --- !u!114 &4479162057800364952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -531,6 +536,27 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 013356619a5bfb743b22ec6db714c985, type: 3}
   - {fileID: 21300000, guid: 6c7d65782715f1d48a65fcc2c6b8c5d2, type: 3}
   _healthComponent: {fileID: 0}
+--- !u!95 &743770126942121969
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5328186423594502750}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7dedd79625ef82f448f39252044d6d4d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6966274782251839302
 GameObject:
   m_ObjectHideFlags: 0
