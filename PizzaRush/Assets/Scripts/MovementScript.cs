@@ -17,8 +17,8 @@ public class MovementScript : MonoBehaviour
     IEnumerator PlayAnimation()
     {
         yield return new WaitForSeconds(1);
-        transform.GetChild(2).DORotate(new Vector3(18f, 270f, 0f), 2f).SetEase(Ease.OutQuad);
-        transform.GetChild(2).DOMoveX(41, 2f).SetEase(Ease.OutQuad).OnComplete(() => EnableMovement());
+        transform.GetChild(1).DORotate(new Vector3(18f, 270f, 0f), 2f).SetEase(Ease.OutQuad);
+        transform.GetChild(1).DOMoveX(41, 2f).SetEase(Ease.OutQuad).OnComplete(() => EnableMovement());
     }
 
     void EnableMovement()
