@@ -14,6 +14,8 @@ public class CollisionHandler : MonoBehaviour
     public Sprite[] _images;
     [SerializeField]
     public Image _healthComponent;
+    [SerializeField]
+    public Canvas finishCanvas;
     private int _health = 4;
     private GameObject[] cones;
     private void Start()
@@ -70,7 +72,7 @@ public class CollisionHandler : MonoBehaviour
                 }
                 break;
             case "Finish":
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                StartCoroutine(FinishWithAnimation());
                 break;
             case "Map":
                 break;
@@ -96,4 +98,29 @@ public class CollisionHandler : MonoBehaviour
 
         _animator.SetTrigger(triggerName);
     }
+
+    private IEnumerator FinishWithAnimation()
+    {
+        GetComponent<MovementScript>().enabled = false;
+        finishCanvas.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(2);
+
+        float duration = 3.5f; 
+        float rotations = 3; 
+        float totalRotation = 360f * rotations; 
+        float startTime = Time.time;
+        Vector3 axis = Vector3.up;
+        while (Time.time < startTime + duration)
+        {
+            transform.GetChild(2).RotateAround(transform.position, axis, totalRotation / duration * Time.deltaTime);
+            yield return null;
+        }
+
+        finishCanvas.gameObject.SetActive(false);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+
 }
