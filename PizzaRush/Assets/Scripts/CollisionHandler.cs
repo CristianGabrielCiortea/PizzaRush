@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -34,10 +33,9 @@ public class CollisionHandler : MonoBehaviour
                 if (movementScript.speed > 8.5f)
                 {
                     DecreaseHealth();
-                    if (_health == 0)
+                    if (_health <= 0)
                     {
-                        SoundManager.instance.PlayClip("gameover");
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                        GameOver();
                         return;
                     }
                 }
@@ -49,10 +47,9 @@ public class CollisionHandler : MonoBehaviour
             case "GroupObstacle":
             case "Obstacle":
                 DecreaseHealth();
-                if (_health == 0)
+                if (_health <= 0)
                 {
-                    SoundManager.instance.PlayClip("gameover");
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    GameOver();
                     return;
                 }
                 _animator.SetTrigger("TriggerCollision");
@@ -80,6 +77,19 @@ public class CollisionHandler : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 break;
         }
+    }
+
+    private void GameOver()
+    {
+        Destroy(_animator);
+        gameObject.GetComponent<MovementScript>().enabled = false;
+
+        transform.GetChild(0).DORotate(new Vector3(0f, 0f, 90f), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear);
+        transform.GetChild(0).DOMoveY(1.1f, 2f).SetEase(Ease.OutQuad).OnComplete(() =>
+        {
+            SoundManager.instance.PlayClip("gameover");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
     }
 
     private void DecreaseHealth()
@@ -113,7 +123,7 @@ public class CollisionHandler : MonoBehaviour
         Vector3 axis = Vector3.up;
         while (Time.time < startTime + duration)
         {
-            transform.GetChild(2).RotateAround(transform.position, axis, totalRotation / duration * Time.deltaTime);
+            transform.GetChild(1).RotateAround(transform.position, axis, totalRotation / duration * Time.deltaTime);
             yield return null;
         }
 
@@ -121,6 +131,4 @@ public class CollisionHandler : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-
-
 }
