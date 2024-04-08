@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,11 +7,8 @@ using UnityEngine.UI;
 public class CollisionHandler : MonoBehaviour
 {
     private Animator _animator;
-    [SerializeField]
-    private ParticleSystem _particleSystem;
-    [SerializeField]
+    public ParticleSystem _particleSystem;
     public Sprite[] _images;
-    [SerializeField]
     public Image _healthComponent;
     private int _health = 4;
     private GameObject[] cones;
@@ -70,7 +66,17 @@ public class CollisionHandler : MonoBehaviour
                 }
                 break;
             case "Finish":
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                gameObject.GetComponent<MovementScript>().isPlaying = false;
+
+                // Finish animation
+                transform.GetChild(0).DORotate(new Vector3(0f, 180f, 0f), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear);
+                transform.GetChild(0).DOMoveY(1.1f, 2f).SetEase(Ease.OutQuad).OnComplete(() =>
+                    transform.GetChild(0).DOMoveY(0.1f, 1f).SetEase(Ease.OutQuad).OnComplete(() =>
+                        transform.GetChild(0).DOMove(transform.GetChild(0).position + (transform.GetChild(0).forward * 10), 1f).
+                            SetEase(Ease.OutQuad).OnComplete(() => LoadNextScene()
+                        )
+                    )
+                );
                 break;
             case "Map":
                 break;
@@ -78,6 +84,11 @@ public class CollisionHandler : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 break;
         }
+    }
+
+    private void LoadNextScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     private void DecreaseHealth()
