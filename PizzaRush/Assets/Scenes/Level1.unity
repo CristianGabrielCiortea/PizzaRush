@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.5493599, g: 0.85530543, b: 0.92215973, a: 1}
+  m_IndirectSpecularColor: {r: 0.5482791, g: 0.85533166, b: 0.922567, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -499,11 +499,11 @@ Transform:
   m_GameObject: {fileID: 642178994}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -394.11792, y: -57.233753, z: 8.371061}
+  m_LocalPosition: {x: -379.73465, y: 0.0325737, z: 12.202349}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 710557872}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &642178997
 AudioSource:
@@ -744,8 +744,7 @@ Transform:
   m_LocalPosition: {x: 14.383278, y: 57.266327, z: 3.8312874}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 642178996}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &710557873
@@ -2021,6 +2020,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1265125804722340590, guid: b51e396bbed678a46b1338951d0914b1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8647759025666845659, guid: b51e396bbed678a46b1338951d0914b1, type: 3}
       propertyPath: m_Name
       value: Obstacles
@@ -2296,6 +2299,7 @@ SceneRoots:
   - {fileID: 1032163863}
   - {fileID: 705507995}
   - {fileID: 259715466}
+  - {fileID: 642178996}
   - {fileID: 710557872}
   - {fileID: 1723390071}
   - {fileID: 1326492638}
