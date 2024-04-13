@@ -53,11 +53,11 @@ public class MovementScript : MonoBehaviour
         // Calculate rotation amount based on input
         float rotationAmount = horizontalInput * rotationSpeed * Time.deltaTime;
 
-        if ((transform.rotation.y > -0.4 && rotationAmount > 0) ||
-            (transform.rotation.y < -0.9 && rotationAmount < 0))
-        {
-            rotationAmount = 0;
-        }
+        //if ((transform.rotation.y > -0.4 && rotationAmount > 0) ||
+        //    (transform.rotation.y < -0.9 && rotationAmount < 0))
+        //{
+        //    rotationAmount = 0;
+        //}
 
         transform.Rotate(0, rotationAmount, 0);
 
