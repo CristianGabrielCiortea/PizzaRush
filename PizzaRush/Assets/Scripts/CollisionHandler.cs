@@ -83,7 +83,8 @@ public class CollisionHandler : MonoBehaviour
             case "Map":
                 break;
             default:
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                MakeHealthZero();
+                GameOver();
                 break;
         }
     }
@@ -107,6 +108,15 @@ public class CollisionHandler : MonoBehaviour
         _healthComponent.DOFade(0, 0.25f).OnComplete(() =>
         {
             _healthComponent.sprite = _images[_health - 1];
+            _healthComponent.DOFade(1, 0.25f);
+        });
+    }
+
+    private void MakeHealthZero()
+    {
+        _healthComponent.DOFade(0, 0.25f).OnComplete(() =>
+        {
+            _healthComponent.sprite = _images[-1];
             _healthComponent.DOFade(1, 0.25f);
         });
     }
