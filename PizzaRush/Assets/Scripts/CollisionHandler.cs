@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -14,6 +13,8 @@ public class CollisionHandler : MonoBehaviour
     public Sprite[] _images;
     [SerializeField]
     public Image _healthComponent;
+    [SerializeField]
+    public Canvas finishCanvas;
     private int _health = 4;
     private GameObject[] cones;
     private void Start()
@@ -24,53 +25,60 @@ public class CollisionHandler : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    {
+        {
         var movementScript = GetComponent<MovementScript>();
         switch (collision.gameObject.tag)
         {
             case "SpeedBump":
-                if (movementScript.speed > 8.5f)
+                if (movementScript.speed > 10f)
                 {
                     DecreaseHealth();
-                    if (_health == 0)
+                    if (_health <= 0)
                     {
-                        SoundManager.instance.PlayClip("gameover");
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                        GameOver();
                         return;
                     }
                 }
-                if(movementScript.speed > 5.25f)
+                if(movementScript.speed > 8f)
                 {
                     movementScript.speed -= 0.25f;
                 }
                 break;
             case "GroupObstacle":
-            case "Obstacle":
-                DecreaseHealth();
-                if (_health == 0)
+                Destroy(collision.gameObject);
+                foreach (var cone in cones)
                 {
-                    SoundManager.instance.PlayClip("gameover");
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    Destroy(cone);
+                }
+                DecreaseHealth();
+                if (_health <= 0)
+                {
+                    GameOver();
                     return;
                 }
                 _animator.SetTrigger("TriggerCollision");
                 SoundManager.instance.PlayClip("collide");
                 _particleSystem.Play();
                 StartCoroutine(SetTriggerAfterDelay("UntriggerCollision", 1f));
-                if (collision.gameObject.CompareTag("GroupObstacle"))
+                break;
+            case "Obstacle":
+                Destroy(collision.gameObject);
+                DecreaseHealth();
+                if (_health <= 0)
                 {
-                    foreach (var cone in cones)
-                    {
-                        Destroy(cone);
-                    }
+                    GameOver();
+                    return;
                 }
-                else
+                if (_animator)
                 {
-                    Destroy(collision.gameObject);
+                    _animator.SetTrigger("TriggerCollision");
+                    SoundManager.instance.PlayClip("collide");
+                    _particleSystem.Play();
+                    StartCoroutine(SetTriggerAfterDelay("UntriggerCollision", 1f));
                 }
                 break;
             case "Finish":
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                StartCoroutine(FinishWithAnimation());
                 break;
             case "Map":
                 break;
@@ -78,6 +86,19 @@ public class CollisionHandler : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 break;
         }
+    }
+
+    private void GameOver()
+    {
+        SoundManager.instance.PlayClip("gameover");
+        Destroy(_animator);
+        gameObject.GetComponent<MovementScript>().enabled = false;
+
+        transform.GetChild(0).DORotate(new Vector3(0f, 0f, 90f), 2f, RotateMode.LocalAxisAdd).SetEase(Ease.Linear);
+        transform.GetChild(0).DOMoveY(1.1f, 2f).SetEase(Ease.OutQuad).OnComplete(() =>
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
     }
 
     private void DecreaseHealth()
@@ -95,5 +116,34 @@ public class CollisionHandler : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         _animator.SetTrigger(triggerName);
+    }
+
+    private IEnumerator FinishWithAnimation()
+    {
+        GetComponent<MovementScript>().enabled = false;
+        finishCanvas.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(2);
+
+        float duration = 3.5f;
+        float rotations = 3;
+        float totalRotation = 360f * rotations;
+        float startTime = Time.time;
+        Vector3 axis = Vector3.up;
+        while (Time.time < startTime + duration)
+        {
+            transform.GetChild(1).RotateAround(transform.position, axis, totalRotation / duration * Time.deltaTime);
+            yield return null;
+        }
+
+        finishCanvas.gameObject.SetActive(false);
+
+        int newSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (newSceneIndex > 2)
+        {
+            newSceneIndex = 0;
+        }
+
+        SceneManager.LoadScene(newSceneIndex);
     }
 }
