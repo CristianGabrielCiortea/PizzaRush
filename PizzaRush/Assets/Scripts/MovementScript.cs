@@ -47,34 +47,25 @@ public class MovementScript : MonoBehaviour
             return;
         }
 
-        // Get player input for horizontal movement
         float horizontalInput = Input.GetAxis("Horizontal");
 
-        // Calculate rotation amount based on input
         float rotationAmount = horizontalInput * rotationSpeed * Time.deltaTime;
-
-        //if ((transform.rotation.y > -0.4 && rotationAmount > 0) ||
-        //    (transform.rotation.y < -0.9 && rotationAmount < 0))
-        //{
-        //    rotationAmount = 0;
-        //}
 
         transform.Rotate(0, rotationAmount, 0);
 
         if (Input.GetKey(KeyCode.Space))
         {
             emitTrailMarks();
-            if (speed > 5f)
-                speed -= 0.025f;
+            if (speed > 6f)
+                speed -= 0.08f;
         }
         else
         {
             stopTrailMarks();
             if (speed < initialSpeed)
-                speed += 0.05f;
+                speed += 0.1f;
         }
 
-        // Move the car forward
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 

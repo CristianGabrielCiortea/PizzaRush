@@ -30,7 +30,7 @@ public class CollisionHandler : MonoBehaviour
         switch (collision.gameObject.tag)
         {
             case "SpeedBump":
-                if (movementScript.speed > 8.5f)
+                if (movementScript.speed > 10f)
                 {
                     DecreaseHealth();
                     if (_health <= 0)
@@ -39,7 +39,7 @@ public class CollisionHandler : MonoBehaviour
                         return;
                     }
                 }
-                if(movementScript.speed > 5.25f)
+                if(movementScript.speed > 8f)
                 {
                     movementScript.speed -= 0.25f;
                 }
@@ -69,10 +69,13 @@ public class CollisionHandler : MonoBehaviour
                     GameOver();
                     return;
                 }
-                _animator.SetTrigger("TriggerCollision");
-                SoundManager.instance.PlayClip("collide");
-                _particleSystem.Play();
-                StartCoroutine(SetTriggerAfterDelay("UntriggerCollision", 1f));
+                if (_animator)
+                {
+                    _animator.SetTrigger("TriggerCollision");
+                    SoundManager.instance.PlayClip("collide");
+                    _particleSystem.Play();
+                    StartCoroutine(SetTriggerAfterDelay("UntriggerCollision", 1f));
+                }
                 break;
             case "Finish":
                 StartCoroutine(FinishWithAnimation());
@@ -135,6 +138,12 @@ public class CollisionHandler : MonoBehaviour
 
         finishCanvas.gameObject.SetActive(false);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        int newSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        if (newSceneIndex > 2)
+        {
+            newSceneIndex = 0;
+        }
+
+        SceneManager.LoadScene(newSceneIndex);
     }
 }

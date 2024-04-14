@@ -27,7 +27,6 @@ public class SettingsManager : MonoBehaviour
 
     public void CloseSettings()
     {
-        Debug.Log("Close settings");
         HideControls();
         settingsMenu.gameObject.SetActive(false);
     }

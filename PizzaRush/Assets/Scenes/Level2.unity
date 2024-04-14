@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.54919535, g: 0.8553289, b: 0.9221949, a: 1}
+  m_IndirectSpecularColor: {r: 0.5492218, g: 0.8552939, b: 0.9222161, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -15975,7 +15975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 637236080113441542, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
       propertyPath: speed
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 637236080113441542, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
       propertyPath: gameUI
@@ -16009,6 +16009,10 @@ PrefabInstance:
       propertyPath: tireMarks.Array.data[2]
       value: 
       objectReference: {fileID: 2001589249}
+    - target: {fileID: 1196842859450013288, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2187998669434834566, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
       propertyPath: m_Constraints
       value: 112
@@ -16219,6 +16223,14 @@ PrefabInstance:
     - target: {fileID: 2483723994600321346, guid: 47276d0866106f0419fecce4680449de, type: 3}
       propertyPath: m_Name
       value: Obstacles
+      objectReference: {fileID: 0}
+    - target: {fileID: 4672121152570889270, guid: 47276d0866106f0419fecce4680449de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -151.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536538525106044109, guid: 47276d0866106f0419fecce4680449de, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -155.87
       objectReference: {fileID: 0}
     - target: {fileID: 9006922305779388339, guid: 47276d0866106f0419fecce4680449de, type: 3}
       propertyPath: m_LocalPosition.x
