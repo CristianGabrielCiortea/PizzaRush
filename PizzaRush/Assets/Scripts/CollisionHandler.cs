@@ -20,7 +20,7 @@ public class CollisionHandler : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
-        _healthComponent.sprite = _images[_health - 1];
+        _healthComponent.sprite = _images[_health];
         cones = GameObject.FindGameObjectsWithTag("GroupObstacle");
     }
 
@@ -104,10 +104,13 @@ public class CollisionHandler : MonoBehaviour
 
     private void DecreaseHealth()
     {
-        _health--;
+        if (_health > 0)
+        {
+            _health--;
+        }
         _healthComponent.DOFade(0, 0.25f).OnComplete(() =>
         {
-            _healthComponent.sprite = _images[_health - 1];
+            _healthComponent.sprite = _images[_health];
             _healthComponent.DOFade(1, 0.25f);
         });
     }

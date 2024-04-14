@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.5492068, g: 0.85532236, b: 0.9222112, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1396,6 +1396,30 @@ PrefabInstance:
       propertyPath: _healthComponent
       value: 
       objectReference: {fileID: 489544406}
+    - target: {fileID: 4479162057800364952, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+      propertyPath: _images.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4479162057800364952, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+      propertyPath: _images.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: a10c74243b52ad44e8ebe77f0bff906c, type: 3}
+    - target: {fileID: 4479162057800364952, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+      propertyPath: _images.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: bc86fa857ae449f459757008b54608bf, type: 3}
+    - target: {fileID: 4479162057800364952, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+      propertyPath: _images.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 8354f6cf7af301249bd37b0cfbc5f513, type: 3}
+    - target: {fileID: 4479162057800364952, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+      propertyPath: _images.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 013356619a5bfb743b22ec6db714c985, type: 3}
+    - target: {fileID: 4479162057800364952, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
+      propertyPath: _images.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6c7d65782715f1d48a65fcc2c6b8c5d2, type: 3}
     - target: {fileID: 4906683833456348922, guid: 33a4f6c95b9cc644bb091fa7a3c1f17c, type: 3}
       propertyPath: far clip plane
       value: 1000
